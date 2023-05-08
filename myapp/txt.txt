@@ -1,0 +1,36 @@
+          #                 این توضیحات را بر اساس تجربه کار با cmd در ویندوز نوشتم                 #
+#                 I wrote these explanations based on my experience working with cmd in Windows                 #
+
+
+
+
+
+
+
+  # یک  request.post  با ورودی های نام و پسورد می فرستیم به این url
+# We send a request.post with name and password entries to this url
+C:\Users\css>curl -X POST -H "Content-Type: application/json" -d "{\"username\":\"reza\",\"password\":\"reza\"} " http://127.0.0.1:8000/api/token/
+
+ # اگه کاربری با اون نام و پسورد باشه برای ما به عنوان response (جواب) به ما دو تا توکن میده یکی برای تازه سازی پسورد و دیگری به عنوان توکن اصلی (token) برای وارد شدن یا دادن به سایت
+# If there is a user with that name and password, it will give us two tokens as a response, one to update the password and the other as the main password to log in or login to the site.
+{"refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4MzY1NTk1MSwiaWF0IjoxNjgzNTY5NTUxLCJqdGkiOiI2NjgxM2I1ZWY3ZmE0YjA3YTRlNGYzYWEzYWUwNWY0MyIsInVzZXJfaWQiOjF9.WU_9ZtxghI6oFhRvekqM1x14VrnYBicPxsCkKjzSdXw","access":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgzNTY5ODUxLCJpYXQiOjE2ODM1Njk1NTEsImp0aSI6IjgzNDkyYzgxNWNiNTQxM2E5OWFjMGViZDVkNWRmNTBiIiwidXNlcl9pZCI6MX0.KPMWPZZ9ij6I7hT-HmQm733QdlP5bbRXQC-2fJJB6kA"}
+
+# حالا آدرس یک قسمت از وبسایت را می دیم و ورودیِ token رو بهش می دیم
+# Now we give the address of a part of the website and give it the token input
+C:\Users\css>curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgzNTY5ODUxLCJpYXQiOjE2ODM1Njk1NTEsImp0aSI6IjgzNDkyYzgxNWNiNTQxM2E5OWFjMGViZDVkNWRmNTBiIiwidXNlcl9pZCI6MX0.KPMWPZZ9ij6I7hT-HmQm733QdlP5bbRXQC-2fJJB6kA" http://127.0.0.1:8000/api/items/
+
+# اگه همه چی درست پیش بره داده هایی که می خواستیم رو بهمون می ده
+# If everything goes right, it will give us the data we wanted
+[{"id":2,"name":"11","title":"qq","body":"wwwwwwwwwwwwwwwwwwwwwwwwwwww"},{"id":3,"name":"22","title":"ee","body":"rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"},{"id":5,"name":"33","title":"tt","body":"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"}]
+
+C:\Users\css>curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgzNTY5ODUxLCJpYXQiOjE2ODM1Njk1NTEsImp0aSI6IjgzNDkyYzgxNWNiNTQxM2E5OWFjMGViZDVkNWRmNTBiIiwidXNlcl9pZCI6MX0.KPMWPZZ9ij6I7hT-HmQm733QdlP5bbRXQC-2fJJB6kA" http://127.0.0.1:8000/api/items/
+
+{"detail":"Given token not valid for any token type","code":"token_not_valid","messages":[{"token_class":"AccessToken","token_type":"access","message":"Token is invalid or expired"}]}
+
+C:\Users\css>curl -X POST -H "Content-Type: application/json" -d "{\"username\":\"reza\",\"password\":\"reza\"} " http://127.0.0.1:8000/api/token/
+
+{"refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4MzY1ODM2MywiaWF0IjoxNjgzNTcxOTYzLCJqdGkiOiJjMDE5NTVjNzQ4YWI0Mjk4YmEyMzVkMTIxZGQ4YzkwMiIsInVzZXJfaWQiOjF9.vg6e4DCnLJPwGKaex3R29YFsABewqILDm0UWXw4be24","access":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgzNTcyMjYzLCJpYXQiOjE2ODM1NzE5NjMsImp0aSI6ImRmYTQ3ZGIxMzU0NTQzYzk5MDc5MjQwMTUzOWNlMTAxIiwidXNlcl9pZCI6MX0.AC6c2dhArZUcucgngX02fk0yhQJFIOcnIV7MqbNBO2Y"}
+
+C:\Users\css>curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgzNTcyMjYzLCJpYXQiOjE2ODM1NzE5NjMsImp0aSI6ImRmYTQ3ZGIxMzU0NTQzYzk5MDc5MjQwMTUzOWNlMTAxIiwidXNlcl9pZCI6MX0.AC6c2dhArZUcucgngX02fk0yhQJFIOcnIV7MqbNBO2Y" http://127.0.0.1:8000/api/items/
+
+[{"id":2,"name":"11","title":"qq","body":"wwwwwwwwwwwwwwwwwwwwwwwwwwww"},{"id":3,"name":"22","title":"ee","body":"rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"},{"id":5,"name":"33","title":"tt","body":"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"}]

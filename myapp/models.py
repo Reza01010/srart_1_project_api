@@ -1,7 +1,9 @@
 from django.db import models
 
 
-class Todo(models.Model):
+class Item(models.Model):
+    name = models.CharField(max_length=50)
+
     title = models.CharField(max_length=210)
 
     body = models.TextField()
